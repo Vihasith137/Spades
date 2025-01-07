@@ -15,5 +15,20 @@ Being the Spade is the highest Symbol and, the values follow the order with A as
 
 1.	Player should reveal the same symbol card as on the open card which determines the starting symbol. If they don’t have the same symbol, they are free to reveal any symbol. 
 2.	If any player found to fail the rule 1, their team will be deducted with -50. 
-3.	Player is not allowed to take back the card once he reveals a card. 
+3.	Player is not allowed to take back the card once he reveals a card.
+
+## Guide to access template
+Please refer to the template available in this repository if you want to access it. 
+
+# Development of the Template
+
+One of the standout elements of my work involves a project where I utilized Microsoft Excel to design a dynamic and interactive system that automates score calculations and provides a visually appealing representation of player performance. This initiative began as a small-scale project but quickly grew into a sophisticated tool, showcasing my data interpretation and visualization expertise.
+
+The system I developed includes advanced Excel formulas capable of auto-populating scores for team players across multiple rounds. These formulas are designed to handle data inputs dynamically, ensuring accuracy and efficiency in updating player scores. The automated calculations eliminate the need for manual data entry, significantly reducing errors and enhancing the overall user experience.
+
+To take this project a step further, I incorporated a live leaderboard that refreshes instantaneously after every new entry. This leaderboard is not just a static display—it provides a real-time visual representation of rankings and scores, fostering a sense of competition among players. The dynamic updates ensure that players stay engaged and motivated, as they can track their progress and standing after each round.
+
+The visual aspect of the leaderboard is a key feature. By leveraging Excel's charting and conditional formatting capabilities, I transformed raw data into vibrant, easy-to-understand visuals. Color-coded rankings, trend lines, and bar charts bring the scores to life, making the game more engaging and immersive. These visuals are not merely decorative—they serve a functional purpose by highlighting key metrics and trends, enabling players to quickly grasp their performance and strategize accordingly.
+
+This project exemplifies my ability to interpret complex data and transform it into actionable insights through effective visualization. It demonstrates my proficiency in Excel, particularly in the areas of formula creation, data organization, and visual storytelling. By combining technical precision with creative design, I successfully turned a simple scorekeeping task into an interactive and competitive experience that elevates the game for all participants.
 
