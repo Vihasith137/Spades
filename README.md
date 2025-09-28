@@ -1,19 +1,35 @@
-# Spades
+# Spades League – Web App
 
-The most entertaining activity with my homies is always playing spades with the cards. Btw, do you know how to play spades?
-It’s sandy who got me introduced to this game and we have been playing this game for a year almost every weekend with a gang of atleast 8.
+An interactive 13‑round Spades tournament app. Supports 2–5 teams (2 players per team), round‑by‑round scoring, mid‑round leaderboard modal, and final confetti celebration.
 
-## Here’s how the game goes:
+## Features
+- Email + password sign up (verification required) and Google sign‑in
+- Create a new game session, enter 2–5 team names and 2 players per team
+- 13 rounds; after each submission a leaderboard modal appears; close it to resume play
+- Standard Spades scoring (configurable):
+  - If tricks ≥ bid: `10 × bid` plus `+1` per overtrick (bag)
+  - If tricks < bid: `−10 × bid`
+  - Bags accumulate; every 10 bags: `−100` (configurable)
+  - Nil: `+100` on success (0 tricks), `−100` on fail (configurable)
+  - Blind Nil: `+200` / `−200` (configurable)
+- Persistent sessions in Firestore; real‑time updates
+- Final leaderboard shows confetti for the winner
 
-Each player is randomly distributed a card for the first round and the result of the first round will be declared immediately after everyone reveals their card. For the second round, 2 cards will be distributed and so on there will be 13 rounds, and for the 13th round, 13 cards will be distributed. There will be a random open card. It can be played among even players with a minimum of 6 are divided into teams and sits in opposite side forming a circle. 
+> If your Excel template defines different points (e.g., different bag penalties), adjust `settings` when creating a session in `Setup.tsx` or make a UI for it.
 
-## Here’s how the game works:
+## Quick Start
+1. Create a Firebase project (Authentication + Firestore).
+2. Enable Email/Password and Google in **Authentication → Sign‑in method**.
+3. Copy Web SDK config into `src/firebase.ts`.
+4. Deploy Firestore rules from `firebase.rules`.
+5. Install and run:
+   ```bash
+   npm i
+   npm run dev
+   ```
 
-Being the Spade is the highest Symbol and, the values follow the order with A as highest to 2 being the lowest (A, K, Q, J, 10, 9, …, 3, 2) player is more likely to win for the best card. If any player overrides with the same card, the latest card wins. If there are no spades in a game the player with highest value card within the same symbol as of open card wins. If it’s a first game of any round assigned player must reveal their card first, and if it’s any other game of a round, the winner of previous round must reveal their card first. Before any round starts, teams must predict their wins in that round. For correct predictions team will be given with 10 points per win, and if there’s a false prediction there will be -10 points per loss. If any team wins without any prediction they will have 1 point per win. 
-
-## Rules:
-
-1.	Player should reveal the same symbol card as on the open card which determines the starting symbol. If they don’t have the same symbol, they are free to reveal any symbol. 
-2.	If any player found to fail the rule 1, their team will be deducted with -50. 
-3.	Player is not allowed to take back the card once he reveals a card. 
-
+## Notes
+- Leaderboard is shown after each `Submit Round`, and can be opened on demand via button.
+- The app enforces a maximum of 5 teams; tweak in `Setup.tsx` to change.
+- All game data is stored inside a `sessions/{id}` document: teams, rounds, totals, and bags.
+- To import scoring from your sheet, map its columns into the `TeamRoundInput` shape: `{ bid, tricks, nil, blindNil }`.
