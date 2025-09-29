@@ -8,7 +8,7 @@ function Stopwatch({ isActive }) {
   </div>;
 }
 
-export default function HeaderBar((gameActive)) {
+export default function HeaderBar() {
   return (
     <header className="site-header">
       <div className="spade-logo" aria-hidden>
