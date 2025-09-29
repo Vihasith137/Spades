@@ -1,62 +1,144 @@
-:root {
-  --bg: #131313;
-  --fg: #f5f5f5;
+/* ===== Theme ===== */
+:root{
+  --bg: #0B0F14;
+  --fg: #EAF2FF;
   --muted: #a7b6c7;
-  --accent: #e20d17;
-  --accent-2: #d71242;
+  --card: #111826;
+  --outline: #24344a;
+  --accent: #82bfff;
+  --accent-2: #4ea3ff;
   --shadow: rgba(0,0,0,.35);
 }
 
-body {
-  margin: 0;
-  color: var(--fg);
-  background: var(--bg);
-  font: 16px/1.4 system-ui, Segoe UI, Roboto, Ubuntu;
-  position: relative;
+/* ===== Global ===== */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;color:var(--fg);font:16px/1.4 system-ui,Segoe UI,Roboto,Ubuntu}
+
+/* Background: large spade card with subtle texture */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background:
+    radial-gradient(1000px 800px at 80% -10%, rgba(130,191,255,.15), transparent 60%),
+    radial-gradient(1000px 800px at 20% 110%, rgba(80,120,255,.12), transparent 60%),
+    linear-gradient(135deg, #0a0f16 0%, #0f1623 60%, #0b0f14 100%);
+  z-index:-3;
+}
+body::after{
+  content:"";
+  position:fixed; inset:0;
+  background:
+    url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900">\
+<defs>\
+  <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">\
+    <stop offset="0" stop-color="white" stop-opacity="0.05"/>\
+    <stop offset="1" stop-color="white" stop-opacity="0.01"/>\
+  </linearGradient>\
+</defs>\
+<rect x="60" y="40" rx="36" ry="36" width="480" height="820" fill="url(#g)" stroke="white" stroke-opacity="0.07" stroke-width="4"/>\
+<g transform="translate(300,460) scale(5)" fill="white" fill-opacity="0.05">\
+  <path d="M0-18C-7-8-22-1-22,9c0,5,4,9,9,9c2,0,5-1,7-2c-2,4-4,6-6,7l-4,2h26l-4-2c-2-1-4-3-6-7c2,1,5,2,7,2c5,0,9-4,9-9C23, -1,8,-8,0,-18z"/>\
+</g>\
+</svg>') center/contain no-repeat;
+  opacity:.5; filter:blur(.5px);
+  z-index:-2;
 }
 
-/* Huge central spade card background! */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url('data:image/svg+xml;utf8,<svg fill="black" width="700" height="880" viewBox="0 0 700 880" xmlns="http://www.w3.org/2000/svg"><path d="M350 60 Q620 355 350 600 Q80 355 350 60z" fill="black"/><ellipse cx="350" cy="700" rx="90" ry="160" fill="white" stroke="red" stroke-width="12"/></svg>') no-repeat center center/contain;
-  opacity: 0.19;
-  z-index: 0;
-  pointer-events: none;
+/* subtle card-table pattern */
+.shell::before{
+  content:"";
+  position:fixed; inset:0;
+  background-image:
+    radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size: 16px 16px, 24px 24px;
+  background-position: 0 0, 12px 8px;
+  z-index:-1;
 }
 
-/* Centering container for all content */
-.center-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  z-index: 1;
-  position: relative;
+/* ===== Layout ===== */
+.shell{min-height:100vh;display:flex;flex-direction:column}
+.site-header{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 20px;
+  border-bottom:1px solid #1b2740;
+  background:rgba(5,8,13,.6);
+  backdrop-filter: blur(6px);
+  position:sticky; top:0; z-index:5;
+}
+.content{max-width:1100px;margin:24px auto;padding:0 16px 40px}
+
+.center{display:flex;align-items:center;justify-content:center;min-height:70vh}
+
+/* Brand */
+.spade-logo svg{width:28px;height:28px;display:block}
+.spade-logo path{fill:#ffffff;opacity:.9;filter:drop-shadow(0 2px 4px rgba(0,0,0,.25))}
+.brand{letter-spacing:.28em;margin:0;font-size:18px;font-weight:800}
+
+/* ===== Components ===== */
+.page{margin-top:18px}
+.card{
+  background:linear-gradient(180deg, rgba(18,24,36,.95), rgba(16,22,33,.92));
+  border:1px solid var(--outline);
+  padding:16px;border-radius:18px;
+  box-shadow:0 12px 40px var(--shadow);
+  margin:14px 0;
+}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.stack{display:flex;flex-direction:column;gap:10px}
+label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+input{padding:11px 12px;border-radius:12px;border:1px solid #2a3a50;background:#0c131d;color:var(--fg);outline:none}
+input:focus{border-color:#3f79ff; box-shadow:0 0 0 3px rgba(79,121,255,.25)}
+button{
+  padding:10px 14px;border-radius:12px;border:1px solid #2c4670;
+  background:linear-gradient(180deg, var(--accent), var(--accent-2));
+  color:#041724;font-weight:800;cursor:pointer; transition:transform .06s ease;
+}
+button:hover{transform:translateY(-1px)}
+button:active{transform:translateY(0)}
+button.ghost{background:transparent;color:var(--fg)}
+button.link{background:transparent;border:none;color:var(--accent);text-decoration:underline;cursor:pointer}
+
+.players{color:var(--muted)}
+.total{margin-top:10px}
+header .mini{color:var(--muted)}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px;z-index:10}
+.modal-body{
+  background:linear-gradient(180deg, rgba(18,24,36,.98), rgba(16,22,33,.96));
+  border:1px solid var(--outline);padding:20px;border-radius:16px;max-width:560px;width:100%;
+  box-shadow:0 18px 60px var(--shadow)
+}
+.lb{list-style:none;margin:0;padding:0}
+.lb li{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px dashed #334}
+.lb li em{font-style:normal}
+
+/* Alert */
+.alert{
+  background:#2a1b1b;border:1px solid #a44;color:#ffd7d7;
+  padding:12px 14px;border-radius:10px;margin:12px 0 8px;font-weight:600
 }
 
-/* Headline styling */
-.center-container h1 {
-  font-size: 2.7em;
-  color: #e20d17;
-  margin-bottom: 0.7em;
-  text-shadow: 0 3px 12px #000, 0 1px 0 #fff;
+/* ===== Playing-card vibe for team panels ===== */
+.playing-card{
+  position:relative; overflow:hidden;
+  border-radius:22px; border:1px solid #2b3950;
+  background:
+    linear-gradient(180deg, rgba(19,25,38,.98), rgba(14,19,30,.96));
 }
-
-.center-container .subtitle {
-  font-size: 1.5em;
-  color: #fff;
-  margin-bottom: 2em;
+.playing-card::before{
+  /* subtle inner gloss */
+  content:""; position:absolute; inset:1px;
+  border-radius:20px;
+  background:linear-gradient(180deg, rgba(255,255,255,.045), transparent 48%);
+  pointer-events:none;
 }
-
-.game-panel {
-  width: 100%;
-  max-width: 500px;
-  background: rgba(30, 30, 30, 0.8);
-  box-shadow: 0 6px 40px var(--shadow);
-  border-radius: 18px;
-  padding: 24px;
-}
+.card-title{margin:0 0 6px 0; font-weight:800; letter-spacing:.02em}
+.pip{position:absolute; font-size:18px; opacity:.25}
+.pip-tl{top:12px; left:12px}
+.pip-tr{top:12px; right:12px}
+.pip-bl{bottom:12px; left:12px; transform:rotate(180deg)}
+.pip-br{bottom:12px; right:12px; transform:rotate(180deg)}
