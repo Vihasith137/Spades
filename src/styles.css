@@ -2,8 +2,8 @@
   --bg: #131313;
   --fg: #f5f5f5;
   --muted: #a7b6c7;
-  --accent: #e20d17;        /* Dominant red */
-  --accent-2: #d71242;      /* Secondary bold red */
+  --accent: #e20d17;
+  --accent-2: #d71242;
   --shadow: rgba(0,0,0,.35);
 }
 
@@ -15,30 +15,48 @@ body {
   position: relative;
 }
 
-/* Large Spade Card SVG centered in background */
+/* Huge central spade card background! */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background: url('data:image/svg+xml;utf8,<svg fill="black" width="800" height="1000" viewBox="0 0 800 1000" xmlns="http://www.w3.org/2000/svg"><path d="M400 120 Q600 360 400 600 Q200 360 400 120z" fill="black"/><ellipse cx="400" cy="700" rx="110" ry="190" fill="white" stroke="red" stroke-width="12"/></svg>') no-repeat center center/70vw;
-  opacity: 0.18;
-  z-index: -2;
+  background: url('data:image/svg+xml;utf8,<svg fill="black" width="700" height="880" viewBox="0 0 700 880" xmlns="http://www.w3.org/2000/svg"><path d="M350 60 Q620 355 350 600 Q80 355 350 60z" fill="black"/><ellipse cx="350" cy="700" rx="90" ry="160" fill="white" stroke="red" stroke-width="12"/></svg>') no-repeat center center/contain;
+  opacity: 0.19;
+  z-index: 0;
   pointer-events: none;
-  filter: grayscale(0.3) contrast(1.2);
 }
 
-/* Style buttons, modals, headers, etc. with accent colors... example for button */
-button {
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+/* Centering container for all content */
+.center-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+/* Headline styling */
+.center-container h1 {
+  font-size: 2.7em;
+  color: #e20d17;
+  margin-bottom: 0.7em;
+  text-shadow: 0 3px 12px #000, 0 1px 0 #fff;
+}
+
+.center-container .subtitle {
+  font-size: 1.5em;
   color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-weight: 700;
-  padding: 10px 20px;
-  box-shadow: 0 4px 12px var(--shadow);
+  margin-bottom: 2em;
 }
 
-button:hover {
-  background: linear-gradient(90deg, #fff, var(--accent));
-  color: var(--accent-2);
+.game-panel {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(30, 30, 30, 0.8);
+  box-shadow: 0 6px 40px var(--shadow);
+  border-radius: 18px;
+  padding: 24px;
 }
