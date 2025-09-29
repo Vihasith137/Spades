@@ -19,9 +19,9 @@ function PrivateRoute({ children }: { children: JSX.Element }) {
 export default function App() {
   return (
     <AuthProvider>
-      <div className="shell">
-        <HeaderBar />
-        <main className="content">
+      <div className="center-container">
+      <h1>SPADES</h1>
+      <div className="subtitle">Round {round} / 13</div>
           <Routes>
             <Route path="/" element={<Navigate to="/setup" replace />} />
             <Route path="/signin" element={<SignIn />} />
@@ -29,6 +29,7 @@ export default function App() {
             <Route path="/setup" element={<PrivateRoute><Setup /></PrivateRoute>} />
             <Route path="/game/:sessionId" element={<PrivateRoute><Game /></PrivateRoute>} />
             <Route path="*" element={<div className="center">404</div>} />
+            <div className="game-panel">
           </Routes>
         </main>
       </div>
